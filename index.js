@@ -3,7 +3,7 @@ require("./db/config")
 const express = require("express")
 const hbs = require("express-handlebars") //requiero hbs para renderizar el front end de reseteo de password.
 const path =  require("path")//path para marcarle el directorio de los archivos.
-const PORT= process.env.port || 3030;
+const PORT= process.env.port
 const server=express()
 server.use(express.json()) 
 server.use(express.urlencoded({ extended:true})) 
@@ -18,7 +18,7 @@ server.set("views",path.join(__dirname, "./views"))//se le indica donde estaran 
 server.engine("hbs", hbs.engine({ extname: "hbs" }))
 
 
-server.listen(PORT,(err)=>{
+server.listen(process.env.PORT,(err)=>{
     err? console.log(`Hubo un error:${err}`) : console.log(`Servidor corriendo en http://localhost:${PORT}`)
 })
 //welcome endpoint
