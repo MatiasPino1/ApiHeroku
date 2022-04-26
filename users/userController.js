@@ -41,7 +41,7 @@ const listOne=async(req,res,next)=>{
 
  const register=async(req,res,next)=>{ 
  const cleanBody=matchedData(req.body)//Metodo de express validator para que solo deje pasar los datos que pueden entrar en la db y no dejar informacion que no es permitida(por ej crear una tabla de mas con info).
- const file =`${url}/${req.file.filename}`
+ const file =url + req.file.filename
  const hashedPassword=await encrypt(req.body.password)
  const dbResponse=await addOne({...req.body, password: hashedPassword,file:file})        
  if(dbResponse instanceof Error){ return next(dbResponse)}
@@ -95,7 +95,7 @@ const forgot = async(req,res,next) => {//metodo para reestablecer contraseña.
     email:dbResponse[0].email
   }
   const token = await tokenSign(user,'15m') //Se firma el token para que sea autentico
-  const link = `${url}/users/reset/${token}`//link para resetear contraseña,utilizando el token como generador de link unico para reseteo.
+  const link = `${url}users/reset/${token}`//link para resetear contraseña,utilizando el token como generador de link unico para reseteo.
 
   let mailDetails = {
     from: "tech.support@mydream.com",
