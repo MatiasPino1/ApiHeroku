@@ -12,6 +12,6 @@ pool.getConnection((err)=>{
     err?console.log(`Error encontrado:${err}`):console.log("Conexion establecida.")
 })
 
-pool.query=util.promisify(connection.query)
+pool.query=util.promisify(pool.query)
 
 module.exports=pool
