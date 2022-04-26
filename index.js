@@ -3,7 +3,7 @@ require("./db/config")
 const express = require("express")
 const hbs = require("express-handlebars") //requiero hbs para renderizar el front end de reseteo de password.
 const path =  require("path")//path para marcarle el directorio de los archivos.
-const PORT= process.env.port
+const PORT= process.env.PORT
 const server=express()
 server.use(express.json()) 
 server.use(express.urlencoded({ extended:true})) 
